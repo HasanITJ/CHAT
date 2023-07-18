@@ -59,10 +59,10 @@ $conn->close();
             <span style="color:red;">
                 <?= $error_id ?>
             </span><br><br>
-            <label>Ведите свой email:</label>
+            <label>Введите свой email:</label>
             <input class="input-login" type="text" name="email" placeholder="Email"
                 value="<?= $_SESSION["email"] ?>" /><br><br>
-            <label>Ведите пороль:</label>
+            <label>Введите пароль:</label>
             <input class="input-login" type="int" name="password" placeholder="Password"
                 value="<?= $_SESSION["password"] ?>" /><br><br>
             <input class="login-button" type="submit" name="button" value="LOGIN">

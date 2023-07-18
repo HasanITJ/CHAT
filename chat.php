@@ -1,9 +1,8 @@
 <?php
 session_start();
-//  if(!isset($_SESSION['id']))
-// {
-//      header("location: login.php");
-//  }
+if (!isset($_SESSION['id'])) {
+    header("location: login.php");
+}
 
 $conn = new mysqli("localhost", "root", "", "chat");
 $conn->query("SET NAMES 'utf8'");
@@ -25,6 +24,8 @@ function printResult($result)
 
 $user_id = $_GET['user_id'];
 
+// print_r($_SESSION);
+
 $user_id_from = $_SESSION['id'];
 
 if (isset($_POST["button"])) {
@@ -38,8 +39,10 @@ if (isset($_POST["button"])) {
     }
 
     $enter = $conn->query("INSERT INTO `messages` (`id_user_from`, `id_user_to`, `text`) VALUES ('$user_id_from', '$user_id','$input')");
-    
-    $poison = $conn->query("SELECT `text` FROM `messages`");
+
+
+    $poison = $conn->query("SELECT * FROM `messages`");
+
 }
 
 $conn->close();
@@ -57,23 +60,36 @@ $conn->close();
 
 <body>
     <section class="blocks">
-        <div class="left-block">
-            <?php echo "<div class='message-block'>" . $input . "</div>"; ?>
+        <div class="left-block" id="scrollbar" id="style-4">
+            <?php
+  $date = date_default_timezone_set('Asia/Dushanbe');
+
+
+            if ($poison->num_rows > 1) {
+                while ($row = $poison->fetch_assoc()) {
+                    echo '<div class="poison-text">' . $row['text']; echo date('<br><br> H:i', time())  . '</div><br>';
+                    $_SESSION = $row['text'];
+                }
+            }
+            ?>
         </div>
         <div class="right-block">
-            <div class='scrollbar' id='style-4'>
-                <?php
-                echo printResult($result);
-                ?>
+            <div id='scrollbar' id='style-4'>
+                <?= printResult($result); ?>
             </div>
         </div>
     </section>
     <div class="input">
         <form action="" method="POST">
-            <input class="input-text" type="text" name="input-text" placeholder="Сообщение" />
+            <input class="input-text" type="text" name="input-text" placeholder="Сообщение" autocomplete="off"
+                autofocus />
             <input class="button" type="submit" name="button" value="отправить" />
         </form>
     </div>
-</body>
 
+</body>
+<script type="text/javascript">
+    var block = document.getElementById("scrollbar");
+    block.scrollTop = 999999;
+</script>
 </html>
