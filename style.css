@@ -147,6 +147,19 @@
     padding: 10px;
 }
 
+.son{
+    width: fit-content;
+    height: auto;
+    margin: 10px;
+    background-color: #bcffdc;
+    border-radius:15px 0 15px  15px;
+    border: 0;
+    color: #000000;
+    outline: none;
+    padding: 10px;
+    float: right;
+}
+
 .container {
     margin-top: 250px;
 }

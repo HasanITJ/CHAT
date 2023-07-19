@@ -20,13 +20,14 @@ function printResult($result)
             echo '</a>';
         }
     }
+
 }
 
 $user_id = $_GET['user_id'];
 
 // print_r($_SESSION);
 
-$user_id_from = $_SESSION['id'];
+$user_from = $_SESSION['id'];
 
 if (isset($_POST["button"])) {
 
@@ -38,11 +39,11 @@ if (isset($_POST["button"])) {
         $input = $_POST["input-text"];
     }
 
-    $enter = $conn->query("INSERT INTO `messages` (`id_user_from`, `id_user_to`, `text`) VALUES ('$user_id_from', '$user_id','$input')");
+    $enter = $conn->query("INSERT INTO `messages` (`id_user_from`, `id_user_to`, `text`) VALUES ('$user_from', '$user_id','$input')");
 
+    $poison = $conn->query("SELECT * FROM `messages` WHERE `id_user_from` = $user_from");
 
-    $poison = $conn->query("SELECT * FROM `messages`");
-
+    $son = $conn->query("SELECT * FROM `messages` WHERE `id_user_to` = $user_id");
 }
 
 $conn->close();
@@ -60,18 +61,30 @@ $conn->close();
 
 <body>
     <section class="blocks">
-        <div class="left-block" id="scrollbar" id="style-4">
-            <?php
-  $date = date_default_timezone_set('Asia/Dushanbe');
-
-
-            if ($poison->num_rows > 1) {
-                while ($row = $poison->fetch_assoc()) {
-                    echo '<div class="poison-text">' . $row['text']; echo date('<br><br> H:i', time())  . '</div><br>';
-                    $_SESSION = $row['text'];
+        <div class="left-block">
+            <div id="scrollbar" id="style-4">
+                <?php
+                $date = date_default_timezone_set('Asia/Dushanbe');
+                                                                                                            
+                if ($poison->num_rows > 1) {
+                    while ($row = $poison->fetch_assoc()) {
+                        echo '<div class="poison-text">' . $row['text'];
+                        echo '<div style="text-align:right;">' . date('H:i', time()) . '</div></div><br>';
+                        $_SESSION = $row['text'];
+                    }
                 }
-            }
-            ?>
+
+
+                // if ($son->num_rows > 1) {
+                //     while ($rows = $son->fetch_assoc()) {
+                //         echo '<div class="son">' . $rows['text'];
+                //         echo '<div>' . date('H:i', time()) . '</div></div><br><br><br><br>';
+                //         $_SESSION = $rows['text'];
+                //     }
+                // }
+
+                ?>
+            </div>
         </div>
         <div class="right-block">
             <div id='scrollbar' id='style-4'>
@@ -92,4 +105,5 @@ $conn->close();
     var block = document.getElementById("scrollbar");
     block.scrollTop = 999999;
 </script>
+
 </html>
