@@ -103,7 +103,7 @@
 }
 
 
-#scrollbar{
+#scrollbar {
     height: 63vh;
     overflow: auto;
     margin-top: 24px;
@@ -147,12 +147,12 @@
     padding: 10px;
 }
 
-.son{
+.son {
     width: fit-content;
     height: auto;
     margin: 10px;
     background-color: #bcffdc;
-    border-radius:15px 0 15px  15px;
+    border-radius: 15px 0 15px 15px;
     border: 0;
     color: #000000;
     outline: none;
@@ -164,8 +164,8 @@
     margin-top: 250px;
 }
 
-.form{
-   display:flex;
+.form {
+    display: flex;
 }
 
 .form-block {
@@ -182,15 +182,15 @@
     padding: 20px;
 }
 
-.form-title{
+.form-title {
     font-size: 30px;
 }
 
-.log{
+.log {
     margin-left: 50px;
 }
 
-.form-button{
+.form-button {
     padding: 10px;
     font-weight: bolder;
     background-color: white;
@@ -199,11 +199,11 @@
     margin: 15px;
 }
 
-.form-text{
+.form-text {
     text-align: center;
 }
 
-.form-image img{
+.form-image img {
     width: 420px;
 
 }

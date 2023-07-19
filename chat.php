@@ -65,7 +65,7 @@ $conn->close();
             <div id="scrollbar" id="style-4">
                 <?php
                 $date = date_default_timezone_set('Asia/Dushanbe');
-                                                                                                            
+
                 if ($poison->num_rows > 1) {
                     while ($row = $poison->fetch_assoc()) {
                         echo '<div class="poison-text">' . $row['text'];
@@ -75,13 +75,13 @@ $conn->close();
                 }
 
 
-                // if ($son->num_rows > 1) {
-                //     while ($rows = $son->fetch_assoc()) {
-                //         echo '<div class="son">' . $rows['text'];
-                //         echo '<div>' . date('H:i', time()) . '</div></div><br><br><br><br>';
-                //         $_SESSION = $rows['text'];
-                //     }
-                // }
+                if ($son->num_rows > 1) {
+                    while ($rows = $son->fetch_assoc()) {
+                        echo '<div class="son">' . $rows['text'];
+                        echo '<div>' . date('H:i', time()) . '</div></div><br><br><br><br>';
+                        $_SESSION = $rows['text'];
+                    }
+                }
 
                 ?>
             </div>
