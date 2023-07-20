@@ -24,9 +24,6 @@ function printResult($result)
 }
 
 $user_id = $_GET['user_id'];
-
-// print_r($_SESSION);
-
 $user_from = $_SESSION['id'];
 
 if (isset($_POST["button"])) {
@@ -39,14 +36,16 @@ if (isset($_POST["button"])) {
         $input = $_POST["input-text"];
     }
 
-    $enter = $conn->query("INSERT INTO `messages` (`id_user_from`, `id_user_to`, `text`) VALUES ('$user_from', '$user_id','$input')");
-
-    $poison = $conn->query("SELECT * FROM `messages` WHERE `id_user_from` = $user_from");
-
-    $son = $conn->query("SELECT * FROM `messages` WHERE `id_user_to` = $user_id");
 }
+$enter = $conn->query("INSERT INTO `messages` (`id_user_from`, `id_user_to`, `text`) VALUES ('$user_from', '$user_id','$input')");
 
-$conn->close();
+$poison = $conn->query("SELECT * FROM `messages` WHERE `id_user_from` = $user_from");
+print_r($poison);
+
+$son = $conn->query("SELECT * FROM `messages` WHERE `id_user_to` = $user_id");
+print_r($son);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +59,9 @@ $conn->close();
 </head>
 
 <body>
+    <div style="float: right; margin:20px;">
+       <a href="settings.php"><img src='img/unnamed.png' alt='Изменить' style='width: 65px;' /></a>
+    </div>
     <section class="blocks">
         <div class="left-block">
             <div id="scrollbar" id="style-4">
@@ -71,18 +73,17 @@ $conn->close();
                         echo '<div class="poison-text">' . $row['text'];
                         echo '<div style="text-align:right;">' . date('H:i', time()) . '</div></div><br>';
                         $_SESSION = $row['text'];
+                        print_r($row);
                     }
-                }
-
-
-                if ($son->num_rows > 1) {
-                    while ($rows = $son->fetch_assoc()) {
-                        echo '<div class="son">' . $rows['text'];
+                }else{
+                    while ($row = $son->fetch_assoc()) {
+                        echo '<div class="son">' . $row['text'];
                         echo '<div>' . date('H:i', time()) . '</div></div><br><br><br><br>';
-                        $_SESSION = $rows['text'];
+                        $_SESSION = $row['text'];
+                        print_r($row);
                     }
                 }
-
+                $conn->close();
                 ?>
             </div>
         </div>
