@@ -50,7 +50,7 @@ if (isset($_POST["button"])) {
 
     if (!$error) {
         $mysql->query("INSERT INTO `users` (`name`, `email`, `password`) VALUES ('$name', '$email','$password')");
-        header("Location:chat.php?login-button=1");
+        header("Location:chat.php");
         exit;
     }
 }
@@ -88,7 +88,7 @@ if (isset($_POST["button"])) {
             </span>
             <input class="input-login" type="int" name="password" placeholder="Password"
                 value="<?= $_SESSION["password"] ?>" /><br><br>
-            <input class="login-button" type="submit" name="button" value="LOGIN">
+            <input class="login-button" type="submit" name="button" value="sign up">
         </form>
     </section>
 </body>

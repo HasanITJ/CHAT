@@ -49,7 +49,7 @@ print_r($son);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,7 +59,7 @@ print_r($son);
 </head>
 
 <body>
-    <div style="float: right; margin:20px;">
+        <div style="float: right; margin:20px;">
        <a href="settings.php"><img src='img/unnamed.png' alt='Изменить' style='width: 65px;' /></a>
     </div>
     <section class="blocks">
@@ -71,14 +71,14 @@ print_r($son);
                 if ($poison->num_rows > 1) {
                     while ($row = $poison->fetch_assoc()) {
                         echo '<div class="poison-text">' . $row['text'];
-                        echo '<div style="text-align:right;">' . date('H:i', time()) . '</div></div><br>';
+                        echo '<div style="text-align:right;">' .$_SESSION = date('H:i', time()). '</div></div><br>';
                         $_SESSION = $row['text'];
                         print_r($row);
                     }
                 }else{
                     while ($row = $son->fetch_assoc()) {
                         echo '<div class="son">' . $row['text'];
-                        echo '<div>' . date('H:i', time()) . '</div></div><br><br><br><br>';
+                        echo '<div>' .$_SESSION = date('H:i', time()). '</div></div><br><br><br><br>';
                         $_SESSION = $row['text'];
                         print_r($row);
                     }

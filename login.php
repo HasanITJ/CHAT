@@ -1,4 +1,5 @@
 <?php
+
 $conn = new mysqli("localhost", "root", "", "chat");
 $conn->query("SET NAMES 'utf8'");
 
@@ -65,7 +66,7 @@ $conn->close();
             <label>Введите пароль:</label>
             <input class="input-login" type="int" name="password" placeholder="Password"
                 value="<?= $_SESSION["password"] ?>" /><br><br>
-            <input class="login-button" type="submit" name="button" value="LOGIN">
+            <input class="login-button" type="submit" name="button" value="sign in">
         </form>
     </section>
 </body>

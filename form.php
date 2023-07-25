@@ -34,7 +34,7 @@ $conn->close();
         <div class="form-image">
           <img src="./img/image.png" alt="chat">
         </div>
-        <form class="form" action="" method="post">
+        <form class="form" action="" method="post" style="display:flex;">
           <div class="reg">
             <input class="form-button" type="submit" name="reg-button" value="Регистрация" />
           </div>
